@@ -28,7 +28,7 @@ var ScenePlay={
         
         this.player = new Player(this).init(game.canvas.width/2,game.canvas.height - 100);
         this.ball = new Ball(this).init(0,0);
-        this.boss = new Argus(this).init(this.grid);
+        this.boss = new Hydra(this).init(this.grid);
         
         this.boss.attack();
         

@@ -83,34 +83,31 @@ const Player =function(parent){
     this.input = () =>{
         
         var moveX = 0;
-        if(left.isDown)moveX--;
-        else if(right.isDown)moveX++;
         var moveY = 0;
-        if(up.isDown)moveY--;
-        else if(down.isDown)moveY++;
+        if(!useMouse){
+            if(up.isDown)moveY--;
+            else if(down.isDown)moveY++;
+            if(left.isDown)moveX--;
+            else if(right.isDown)moveX++;
+        }
+        else{
+            var posX = this.fetchParent().input.activePointer.position.x;
+            var posY = this.fetchParent().input.activePointer.position.y;
+            
+            var distX = Phaser.Math.Interpolation.Linear([0,1],Math.abs(this.player.x - posX)/10);
+            var distY = Phaser.Math.Interpolation.Linear([0,1],Math.abs(this.player.y - posY)/10);
+            
+            if(posX > this.player.x)moveX+=distX;
+            else if(posX < this.player.x)moveX-=distX;
+            if(posY > this.player.y)moveY+=distY;
+            else if(posY < this.player.y)moveY-=distY;
+        }
         
-        switch(moveX){
-            case -1:
-                this.player.anims.play('left', true);
-                break;
-            case 0:
-                this.player.anims.play('idle');
-                break;
-            case 1:
-                this.player.anims.play('right', true);
-                break;
-        }
-        switch(moveY){
-            case -1:
-                this.player.anims.play('up', true);
-                break;
-            case 0:
-                this.player.anims.play('idle');
-                break;
-            case 1:
-                this.player.anims.play('down', true);
-                break;
-        }
+        if(moveX < 0)this.player.anims.play('left', true);
+        else if(moveX > 0)this.player.anims.play('right', true);
+        else if(moveY < 0)this.player.anims.play('up', true);
+        else if(moveY > 0)this.player.anims.play('down', true);
+        else this.player.anims.play('idle');
         
         this.player.setVelocityX(moveX*250);
         this.player.setVelocityY(moveY*250);
