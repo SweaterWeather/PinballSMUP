@@ -7,7 +7,9 @@ const WeakPoint =function(parent){
         
         this.weakPoint=this.fetchParent().physics.add.sprite(x,y,"weakpoint");
         this.weakPoint.setCollideWorldBounds(true);    
-        this.weakPoint.body.allowGravity = false;    
+        this.weakPoint.body.allowGravity = false; 
+        
+        WeakPoint.speed = 1;
         
         this.weakPoint.setTarget = (target)=>{
             this.weakPoint.target = target;
@@ -19,7 +21,7 @@ const WeakPoint =function(parent){
                 var distY = Math.abs(this.weakPoint.y - this.weakPoint.target.y);
                 var dist = distX * distX + distY * distY;
                 
-                /*if(dist > 10)*/this.fetchParent().physics.moveToObject(this.weakPoint, this.weakPoint.target, dist/10);
+                /*if(dist > 10)*/this.fetchParent().physics.moveToObject(this.weakPoint, this.weakPoint.target, dist/10 * WeakPoint.speed);
                 //else {
                 //    this.weakPoint.x = this.weakPoint.target.x;
                 //    this.weakPoint.y = this.weakPoint.target.y;

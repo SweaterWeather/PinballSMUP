@@ -27,9 +27,9 @@ var ScenePlay={
         
         this.player = new Player(this).init(game.canvas.width/2,game.canvas.height - 100);
         this.ball = new Ball(this).init(0,0);
-        this.argus = new Argus(this).init(this.grid);
+        this.boss = new Argus(this).init(this.grid);
         
-        this.argus.attack();
+        this.boss.attack();
         
         //this.physics.add.collider(this.player, enemyShots);
         
@@ -40,7 +40,7 @@ var ScenePlay={
         
         dt/=1000;
         
-        this.argus.update(dt);
+        this.boss.update(dt);
         this.player.update(dt);
         this.playerShots.forEach((shot)=>{
             shot.update(dt);
