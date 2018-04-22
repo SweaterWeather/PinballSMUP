@@ -94,8 +94,8 @@ const Player =function(parent){
                 break;
         }
         
-        this.player.setVelocityX(moveX*150);
-        this.player.setVelocityY(moveY*150);
+        this.player.setVelocityX(moveX*250);
+        this.player.setVelocityY(moveY*250);
         
         if(this.player.y < 400)this.player.y = 400;
     }
