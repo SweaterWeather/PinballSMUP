@@ -21,9 +21,9 @@ var ScenePlay={
         });
         txt.x -= txt.width/2;
         
-        var enemyShots=this.physics.add.staticGroup();
-        enemyShots.create(100,400,"enemyShots");
-        enemyShots.create(500,300,"enemyShots");
+        //var enemyShots=this.physics.add.staticGroup();
+        //enemyShots.create(100,400,"enemyShots");
+        //enemyShots.create(500,300,"enemyShots");
         
         this.player = new Player(this).init(game.canvas.width/2,game.canvas.height - 100);
         this.ball = new Ball(this).init(0,0);
@@ -33,7 +33,7 @@ var ScenePlay={
         
         //this.physics.add.collider(this.player, enemyShots);
         
-        this.physics.add.overlap(this.player, enemyShots, ()=>{console.log("overlapped");}, null, this);
+        //this.physics.add.overlap(this.player, enemyShots, ()=>{console.log("overlapped");}, null, this);
     },
     update:function(t,dt){
         if(this.switching)return;
@@ -42,6 +42,7 @@ var ScenePlay={
         
         this.boss.update(dt);
         this.player.update(dt);
+        this.ball.update(dt);
         this.playerShots.forEach((shot)=>{
             shot.update(dt);
         })

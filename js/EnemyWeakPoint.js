@@ -29,6 +29,12 @@ const WeakPoint =function(parent){
             }
         }
         
+        //this.fetchParent().physics.add.collider(this.fetchParent().ball, this.weakPoint);
+        
+        this.fetchParent().physics.add.overlap(this.fetchParent().ball, this.weakPoint, ()=>{
+             this.fetchParent().ball.rebound(this.weakPoint);
+        }, null, this);
+        
         return this.weakPoint;
     }
     this.fetchParent = () =>{
