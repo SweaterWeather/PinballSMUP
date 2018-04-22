@@ -26,7 +26,7 @@ const PlayerShot =function(parent){
             if(this.shot.lifeSpan < 0)this.shot.destroy();
         }
         
-        console.log("made one");
+        //console.log("made one");
         
         return this.shot;
     }

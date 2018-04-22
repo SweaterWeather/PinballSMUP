@@ -8,7 +8,7 @@ const Ball =function(parent){
         this.ball=this.fetchParent().physics.add.sprite(x,y,"ball");
         this.ball.setBounce(1,1);
         this.ball.setCollideWorldBounds(true);
-        this.ball.allowDrag = false;
+        //this.ball.allowDrag = false;
         
         this.ball.setVelocityX(25);
         this.ball.setVelocityY(25);
@@ -17,7 +17,7 @@ const Ball =function(parent){
             
         }
         this.ball.overlapPlayerShot = (velocityX) =>{
-            this.ball.setVelocityY(-750);
+            this.ball.setVelocityY(-500);
             console.log(velocityX);
             this.ball.setVelocityX(this.ball.body.velocity.x + velocityX)
         }
