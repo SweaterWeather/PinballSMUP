@@ -3,7 +3,7 @@ var SceneCredits = {
         
     },
     create:function(){  
-        var txtWords = this.add.text(280,300,"Game Made By These Salty Bois",);
+        var txtWords = this.add.text(280,300,"Game Made By These Bois",);
         
         var txt = this.add.text(280,200,"TITLE",);
         txt.setInteractive();
