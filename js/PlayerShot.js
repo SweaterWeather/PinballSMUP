@@ -12,7 +12,7 @@ const PlayerShot =function(parent){
         
         this.fetchParent().playerShots.push(this.shot);
         this.shot.lifeSpan = .25;
-        this.shot.setScale(.5,.5);
+        //this.shot.setScale(.5,.5);
         
         this.shot.setVelocityY(-500);
         this.shot.right = right;

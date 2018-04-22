@@ -36,23 +36,23 @@ const Argus =function(parent){
             [null, null, null, null, null, c.w2, null],
             [null, null, null, c.w3, null, null, null],
             [null, null, null, null, null, null, null],
-            [null, null, null, c.s1, null, null, null],
-            [null, null, null, null, null, null, null]],
+            [null, null, null, null, null, null, null],
+            [null, null, null, c.s1, null, null, null]],
             
             [[null, c.w3, c.w1, null, null, null, null],
             [null, null, null, null, null, null, null],
             [null, c.w2, null, null, null, null, null],
             [null, null, null, c.w4, null, null, null],
             [null, null, null, null, null, null, null],
-            [null, null, null, c.s2, null, null, null],
-            [null, null, null, null, null, null, null]],
+            [null, null, null, null, null, null, null],
+            [null, null, null, c.s2, null, null, null]],
             
             [[null, null, null, c.w1, null, null, null],
             [null, null, null, c.w2, null, null, null],
             [null, null, c.w3, null, c.w4, null, null],
             [null, null, null, null, null, null, null],
-            [null, null, c.s1, null, c.s2, null, null],
             [null, null, null, null, null, null, null],
+            [null, null, c.s1, null, c.s2, null, null],
             [null, null, null, null, null, null, null]],
         ];
         
@@ -62,7 +62,7 @@ const Argus =function(parent){
             if(c.lastMove == 0){
                 var rand = Math.floor(Math.random()*(c.attacks.length-1))+1;
                 c.lastMove = rand;
-                console.log(rand);
+                
             }
             else c.lastMove = 0;
             c.attacks[c.lastMove].forEach((y, indexY)=>{
@@ -77,8 +77,26 @@ const Argus =function(parent){
             c.w3.update(dt);
             c.w4.update(dt);
             
-            c.s1.update(dt);
-            c.s2.update(dt);
+            switch(c.lastMove){
+                case 0:
+                    c.s1.update(dt);
+                    c.s2.update(dt);
+                    break;
+                case 1:
+                    c.s1.update(dt, 'spreadRight');
+                    c.s2.update(dt);
+                    break;
+                case 2:
+                    c.s2.update(dt, 'spreadLeft');
+                    c.s1.update(dt);
+                    break;
+                case 3:
+                    c.s1.update(dt, 'spreadDown');
+                    c.s2.update(dt, 'spreadDown');
+                    break;
+            }
+            //c.s1.update(dt);
+            //c.s2.update(dt);
             
             c.countDown-=dt;
             if(c.countDown < 0){

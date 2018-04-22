@@ -1,7 +1,7 @@
 const EnemyShot =function(parent){
     this.parent = parent;
     this.isChild = true;
-    this.init = (x, y, right) =>{
+    this.init = (x, y, angle) =>{
         
         
         this.makeAnims();
@@ -12,13 +12,19 @@ const EnemyShot =function(parent){
         this.shot.setScale(.5,.5);
         
         this.fetchParent().playerShots.push(this.shot);
-        this.shot.lifeSpan = .5;
+        this.shot.lifeSpan = 5;
         
-        this.shot.setVelocityY(-500);
+        var veloc = 150;
+        
+        this.shot.setVelocityY(Math.sin(angle)*veloc);
+        this.shot.setVelocityX(Math.cos(angle)*veloc);
         this.shot.right = right;
         
+        this.fetchParent().physics.add.overlap(this.fetchParent().player, this.shot, ()=>{
+            this.fetchParent().player.stunMe();
+            this.shot.destroy();
+        }, null, this);
         this.fetchParent().physics.add.overlap(this.fetchParent().ball, this.shot, ()=>{
-            this.fetchParent().ball.overlapPlayerShot(this.shot.body.velocity.x)
             this.shot.destroy();
         }, null, this);
         

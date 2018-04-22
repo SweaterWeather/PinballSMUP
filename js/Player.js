@@ -23,7 +23,7 @@ const Player =function(parent){
             if(this.gun2)this.gun2.update(dt, false);
             
             if(this.player.stun > 0){
-                this.player.stun--;
+                this.player.stun-=dt;
                 this.player.setVelocityX(0);
                 this.player.setVelocityY(0);
                 return;
@@ -34,7 +34,7 @@ const Player =function(parent){
         this.player.damage = () =>{
             PlayerHP--;
         }
-        this.player.stun = () =>{
+        this.player.stunMe = () =>{
             this.player.stun = .25;
         }
         
