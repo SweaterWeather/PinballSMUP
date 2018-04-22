@@ -1,7 +1,12 @@
+var BossHp = 100;
+var MaxHP = 100;
+
 const Argus =function(parent){
     this.parent = parent;
     this.isChild = true;
     this.init = (grid) =>{
+        BossHp = 100;
+        MaxHP = 100;
         
         var c = {};
         
@@ -10,7 +15,11 @@ const Argus =function(parent){
         c.w3 = new WeakPoint(this).init(0, 0);
         c.w4 = new WeakPoint(this).init(0, 0);
         
+        c.s1 = new BossGun(this).init();
+        c.s2 = new BossGun(this).init();
+        
         c.countDown = 5;
+        c.burstCountDown = 1;
         WeakPoint.speed = 1;
         
         var attacks=[
@@ -27,7 +36,7 @@ const Argus =function(parent){
             [null, null, null, null, null, c.w2, null],
             [null, null, null, c.w3, null, null, null],
             [null, null, null, null, null, null, null],
-            [null, null, null, null, null, null, null],
+            [null, null, null, c.s1, null, null, null],
             [null, null, null, null, null, null, null]],
             
             [[null, c.w3, c.w1, null, null, null, null],
@@ -35,14 +44,14 @@ const Argus =function(parent){
             [null, c.w2, null, null, null, null, null],
             [null, null, null, c.w4, null, null, null],
             [null, null, null, null, null, null, null],
-            [null, null, null, null, null, null, null],
+            [null, null, null, c.s2, null, null, null],
             [null, null, null, null, null, null, null]],
             
             [[null, null, null, c.w1, null, null, null],
             [null, null, null, c.w2, null, null, null],
             [null, null, c.w3, null, c.w4, null, null],
             [null, null, null, null, null, null, null],
-            [null, null, null, null, null, null, null],
+            [null, null, c.s1, null, c.s2, null, null],
             [null, null, null, null, null, null, null],
             [null, null, null, null, null, null, null]],
         ];
@@ -68,11 +77,38 @@ const Argus =function(parent){
             c.w3.update(dt);
             c.w4.update(dt);
             
+            c.s1.update(dt);
+            c.s2.update(dt);
+            
             c.countDown-=dt;
             if(c.countDown < 0){
                 c.countDown = 5;
                 c.attack();
             }
+            
+            if(c.lastMove == 0){
+                c.burstCountDown-=dt;
+                if(c.burstCountDown < 0){
+                    c.burstCountDown = 1;
+                    switch(Math.floor(Math.random()*4)){
+                        case 0:
+                            c.w1.burst();
+                            break;
+                        case 1:
+                            c.w2.burst();
+                            break;
+                        case 2:
+                            c.w3.burst();
+                            break;
+                        case 3:
+                            c.w4.burst();
+                            break;
+                    }
+                }
+            }
+        }
+        c.damage = () =>{
+            BossHp--;
         }
         
         return c;
@@ -87,6 +123,8 @@ const Hydra =function(parent){
     this.parent = parent;
     this.isChild = true;
     this.init = (grid) =>{
+        BossHp = 100;
+        MaxHP = 100;
         
         var c = {};
         
@@ -166,6 +204,9 @@ const Hydra =function(parent){
                 c.countDown = 5;
                 c.attack();
             }
+        }
+        c.damage = () =>{
+            BossHp--;
         }
         
         return c;

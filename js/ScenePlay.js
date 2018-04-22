@@ -21,6 +21,7 @@ var ScenePlay={
         });
         txt.x -= txt.width/2;
         
+        
         //var enemyShots=this.physics.add.staticGroup();
         //enemyShots.create(100,400,"enemyShots");
         //enemyShots.create(500,300,"enemyShots");
@@ -34,6 +35,8 @@ var ScenePlay={
         //this.physics.add.collider(this.player, enemyShots);
         
         //this.physics.add.overlap(this.player, enemyShots, ()=>{console.log("overlapped");}, null, this);
+        this.hpText = this.add.text(0,0,BossHp,{});
+        this.playerHpText = this.add.text(game.canvas.width,0,PlayerHP,{}).setOrigin(1,0);
     },
     update:function(t,dt){
         if(this.switching)return;
@@ -45,6 +48,9 @@ var ScenePlay={
         this.ball.update(dt);
         this.playerShots.forEach((shot)=>{
             shot.update(dt);
-        })
+        });
+        
+        this.hpText.setText(BossHp + "/" + MaxHP);
+        this.playerHpText.setText(PlayerHP + "/" + 3);
     }
 };

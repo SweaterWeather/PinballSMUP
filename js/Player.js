@@ -1,3 +1,4 @@
+var PlayerHP = 3;
 const Player =function(parent){
     this.parent = parent;
     this.isChild = true;
@@ -9,15 +10,32 @@ const Player =function(parent){
         this.player.body.allowGravity = false;
         this.player.setBounce(0.2);
         this.player.setCollideWorldBounds(true);
+        this.player.stunned = 0;
+        this.player.setScale(.5,.5);
         
         this.gun1 = new Gun(this).init(x, y);
         this.gun2 = new Gun(this).init(x, y);
+        
+        PlayerHP = 3;
         
         this.player.update = (dt) =>{
             if(this.gun1)this.gun1.update(dt, true);
             if(this.gun2)this.gun2.update(dt, false);
             
+            if(this.player.stun > 0){
+                this.player.stun--;
+                this.player.setVelocityX(0);
+                this.player.setVelocityY(0);
+                return;
+            }
+            
             this.input();
+        }
+        this.player.damage = () =>{
+            PlayerHP--;
+        }
+        this.player.stun = () =>{
+            this.player.stun = .25;
         }
         
         //this.fetchParent().add.updateList.add(this.player);

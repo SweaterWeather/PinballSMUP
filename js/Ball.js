@@ -9,6 +9,7 @@ const Ball =function(parent){
         this.ball.setBounce(1,1);
         this.ball.setCollideWorldBounds(true);
         //this.ball.allowDrag = false;
+        this.ball.setScale(.5,.5);
         
         this.ball.setVelocityX(25);
         this.ball.setVelocityY(25);
@@ -16,10 +17,11 @@ const Ball =function(parent){
         
         this.ball.update = (dt) =>{
             this.ball.reboundCooldown -= dt;
+            if(this.ball.y >= 700)this.fetchParent().player.damage();
         }
         this.ball.overlapPlayerShot = (velocityX) =>{
             this.ball.setVelocityY(-500);
-            console.log(velocityX);
+            //console.log(velocityX);
             this.ball.setVelocityX(this.ball.body.velocity.x + velocityX)
         }
         this.ball.rebound = (other)=>{
@@ -33,6 +35,7 @@ const Ball =function(parent){
             //this.ball.setVelocityX(-this.ball.body.velocity.x);
             this.ball.reboundCooldown = .1;
             //console.log(angle);
+            this.fetchParent().boss.damage();
         }
         
         return this.ball;

@@ -21,12 +21,11 @@ const WeakPoint =function(parent){
                 var distY = Math.abs(this.weakPoint.y - this.weakPoint.target.y);
                 var dist = distX * distX + distY * distY;
                 
-                /*if(dist > 10)*/this.fetchParent().physics.moveToObject(this.weakPoint, this.weakPoint.target, dist/10 * WeakPoint.speed);
-                //else {
-                //    this.weakPoint.x = this.weakPoint.target.x;
-                //    this.weakPoint.y = this.weakPoint.target.y;
-                //}
+                this.fetchParent().physics.moveToObject(this.weakPoint, this.weakPoint.target, dist/10 * WeakPoint.speed);
             }
+        }
+        this.weakPoint.burst = ()=>{
+            console.log("bust");
         }
         
         //this.fetchParent().physics.add.collider(this.fetchParent().ball, this.weakPoint);

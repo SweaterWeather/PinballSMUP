@@ -1,6 +1,6 @@
 var config={
     type:Phaser.AUTO,
-    width:600,
+    width:400,
     height:725,
     physics:{
         default:'arcade',

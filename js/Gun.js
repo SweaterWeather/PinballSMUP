@@ -5,6 +5,7 @@ const Gun =function(parent){
     Gun.coolDown = 0;
     this.init = (x, y) =>{
         this.gun = this.fetchParent().physics.add.image(x,y,'blank');
+        this.gun.setScale(.5,.5);
         
         
         this.gun.update = (dt, right) =>{
