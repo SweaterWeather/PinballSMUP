@@ -2,7 +2,8 @@ var SceneCredits = {
     preload:function(){
         
     },
-    create:function(){  
+    create:function(){
+        //make some images to make this look better
         var txtWords = this.add.text(280,300,"Game Made By These Bois",);
         
         var txt = this.add.text(280,200,"TITLE",);

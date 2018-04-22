@@ -3,6 +3,8 @@ var SceneTitle = {
         
     },
     create:function(){
+        //make some images to make this look better
+
         var txt = this.add.text(280,200,"PLAY",);
         txt.setInteractive();
         txt.on("pointerdown",()=>{
