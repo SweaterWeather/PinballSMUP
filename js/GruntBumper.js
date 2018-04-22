@@ -17,9 +17,10 @@ const GruntBumper =function(parent){
                 
             }
         }
-        this.grunt.overlapPlayerShot = () =>{
-            this.grunt.isDead = true;
-        }
+        this.fetchParent().physics.add.overlap(this.fetchParent().ball, this.grunt, ()=>{
+            this.fetchParent().ball.overlapPlayerShot(this.shot.body.velocity.x)
+            this.grunt.destroy();
+        }, null, this);
     }
     //A retursive(?) function that loops through all custom game object lineage until it finds something that isn't a custom game object, and assumes that to be the play scene.
     this.fetchParent = () =>{
