@@ -3,12 +3,25 @@ var SceneTitle = {
         
     },
     create:function(){
-        var txt = this.add.text(400,200,"PLAY",);
-        txt.setW(100);
+        var txt = this.add.text(280,200,"PLAY",);
         txt.setInteractive();
         txt.on("pointerdown",()=>{
         game.scene.stop("Title");
         game.scene.start("Play");
+        });
+        
+        var txtCred = this.add.text(270,300,"CREDITS",);
+        txtCred.setInteractive();
+        txtCred.on("pointerdown",()=>{
+        game.scene.stop("Title");
+        game.scene.start("Credits");
+        });
+        
+        var txtExit = this.add.text(280,400,"EXIT",);
+        txtExit.setInteractive();
+        txtExit.on("pointerdown",()=>{
+        game.scene.stop("Title");
+       // game.scene.start("Exit");
         });
     },
     update:function(t,dt){
