@@ -26,6 +26,7 @@ const EnemyShot =function(parent){
         }, null, this);
         this.fetchParent().physics.add.overlap(this.fetchParent().ball, this.shot, ()=>{
             this.shot.destroy();
+            this.fetchParent().score++;
         }, null, this);
         
         this.shot.update = (dt) =>{

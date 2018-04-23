@@ -58,33 +58,33 @@ const BossGun =function(parent){
                             break;
                         case 'beamDown':
                             this.gun.coolDown = 0;
-                            new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 89  * Math.PI/180);
+                            //new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 89  * Math.PI/180);
                             new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 90  * Math.PI/180);
-                            new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 91  * Math.PI/180);
+                            //new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 91  * Math.PI/180);
                             break;
                         case 'beamRight':
                             this.gun.coolDown = 0;
-                            new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, -1  * Math.PI/180);
+                            //new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, -1  * Math.PI/180);
                             new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 0  * Math.PI/180);
-                            new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 1  * Math.PI/180);
+                            //new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 1  * Math.PI/180);
                             break;
                         case 'beamLeft':
                             this.gun.coolDown = 0;
-                            new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 179  * Math.PI/180);
+                            //new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 179  * Math.PI/180);
                             new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 180  * Math.PI/180);
-                            new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, -179  * Math.PI/180);
+                            //new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, -179  * Math.PI/180);
                             break;
                         case 'beamDR':
                             this.gun.coolDown = 0;
-                            new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 44  * Math.PI/180);
+                            //new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 44  * Math.PI/180);
                             new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 45  * Math.PI/180);
-                            new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 46  * Math.PI/180);
+                            //new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 46  * Math.PI/180);
                             break;
                         case 'beamDL':
                             this.gun.coolDown = 0;
-                            new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 134  * Math.PI/180);
+                            //new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 134  * Math.PI/180);
                             new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 135  * Math.PI/180);
-                            new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 136  * Math.PI/180);
+                            //new EnemyShot(this.fetchParent()).init(this.gun.x, this.gun.y, 136  * Math.PI/180);
                             break;
                     }
                 }
@@ -101,7 +101,7 @@ const BossGun =function(parent){
             }
         }
         
-        this.gun.setAlpha(.1);
+        this.gun.setAlpha(0);
         
         return this.gun;
     }

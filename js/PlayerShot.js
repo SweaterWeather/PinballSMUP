@@ -6,7 +6,7 @@ const PlayerShot =function(parent){
         
         this.makeAnims();
         
-        this.shot=this.fetchParent().physics.add.sprite(x,y,"enemyShots");
+        this.shot=this.fetchParent().physics.add.sprite(x,y,"playerShots");
         this.shot.body.allowGravity = false;
         this.shot.allowDrag = false;
         

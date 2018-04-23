@@ -97,6 +97,11 @@ const Player =function(parent){
             var distX = Phaser.Math.Interpolation.Linear([0,1],Math.abs(this.player.x - posX)/10);
             var distY = Phaser.Math.Interpolation.Linear([0,1],Math.abs(this.player.y - posY)/10);
             
+            if(distX > 1)distX=1;
+            if(distX < -1)distX=-1;
+            if(distY > 1)distY=1;
+            if(distY < -1)distY=-1;
+            
             if(posX > this.player.x)moveX+=distX;
             else if(posX < this.player.x)moveX-=distX;
             if(posY > this.player.y)moveY+=distY;

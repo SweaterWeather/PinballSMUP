@@ -11,13 +11,30 @@ const Ball =function(parent){
         //this.ball.allowDrag = false;
         this.ball.setScale(.5,.5);
         
-        this.ball.setVelocityX(25);
-        this.ball.setVelocityY(25);
+        this.ball.activeInGame = false;
+        
+        this.ball.setVelocityX(0);
+        this.ball.setVelocityY(-500);
         this.ball.reboundCooldown = 0;
         
         this.ball.update = (dt) =>{
+            if(!this.ball.activeInGame){
+                this.ball.setVelocityX(0);
+                this.ball.setVelocityY(0);
+                this.ball.x=this.fetchParent().player.x;
+                this.ball.y=this.fetchParent().player.y - 50;
+                
+                var keys = this.fetchParent().input.keyboard.createCursorKeys();
+                if(keys.space.isDown){
+                    this.ball.activeInGame = true;
+                    this.ball.setVelocityY(-500);
+                }
+            }
             this.ball.reboundCooldown -= dt;
-            if(this.ball.y >= 700)this.fetchParent().player.damage();
+            if(this.ball.y >= 700){
+                this.fetchParent().player.damage();
+                this.ball.activeInGame = false;
+            }
         }
         this.ball.overlapPlayerShot = (velocityX) =>{
             this.ball.setVelocityY(-500);
@@ -36,6 +53,7 @@ const Ball =function(parent){
             this.ball.reboundCooldown = .1;
             //console.log(angle);
             this.fetchParent().boss.damage();
+            this.fetchParent().score += 500;
         }
         
         return this.ball;
