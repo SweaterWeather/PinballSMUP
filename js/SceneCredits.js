@@ -8,6 +8,7 @@ var SceneCredits = {
         
         var txt = this.add.text(280,200,"TITLE",);
         txt.setInteractive();
+        
         txt.on("pointerdown",()=>{
         game.scene.stop("Credits");
         game.scene.start("Title");
