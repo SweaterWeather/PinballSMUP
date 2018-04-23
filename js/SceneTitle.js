@@ -1,13 +1,15 @@
 var SceneTitle = {
     preload:function(){
+        this.load.image("IMG","assets/title.png");
         
     },
     create:function(){
         //make some images to make this look better
-
+        var img = this.add.image(280,200,"IMG",);
         var txt = this.add.text(280,200,"PLAY",);
+        img.setInteractive()
         txt.setInteractive();
-        txt.on("pointerdown",()=>{
+        img.on("pointerdown",()=>{
         game.scene.stop("Title");
         game.scene.start("Play");
         });

@@ -4,7 +4,11 @@ var SceneCredits = {
     },
     create:function(){
         //make some images to make this look better
-        var txtWords = this.add.text(280,300,"Game Made By These Bois",);
+        var txtWords = this.add.text(280,300,"Kyle Lowery",);
+        var txtWords = this.add.text(280,300,"Jacob Drummond",);
+        var txtWords = this.add.text(280,300,"Nick Pattison",);
+         var txtWords = this.add.text(280,300,"Joe Senneker",);
+        var txtWords = this.add.text(280,300,"Chris NO KNOWN LAST NAME,);
         
         var txt = this.add.text(280,200,"TITLE",);
         txt.setInteractive();
