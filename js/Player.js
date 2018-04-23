@@ -1,3 +1,4 @@
+var PlayerHP = 3;
 const Player =function(parent){
     this.parent = parent;
     this.isChild = true;
@@ -9,15 +10,32 @@ const Player =function(parent){
         this.player.body.allowGravity = false;
         this.player.setBounce(0.2);
         this.player.setCollideWorldBounds(true);
+        this.player.stunned = 0;
+        this.player.setScale(.5,.5);
         
         this.gun1 = new Gun(this).init(x, y);
         this.gun2 = new Gun(this).init(x, y);
+        
+        PlayerHP = 3;
         
         this.player.update = (dt) =>{
             if(this.gun1)this.gun1.update(dt, true);
             if(this.gun2)this.gun2.update(dt, false);
             
+            if(this.player.stun > 0){
+                this.player.stun-=dt;
+                this.player.setVelocityX(0);
+                this.player.setVelocityY(0);
+                return;
+            }
+            
             this.input();
+        }
+        this.player.damage = () =>{
+            PlayerHP--;
+        }
+        this.player.stunMe = () =>{
+            this.player.stun = .25;
         }
         
         //this.fetchParent().add.updateList.add(this.player);
@@ -65,34 +83,31 @@ const Player =function(parent){
     this.input = () =>{
         
         var moveX = 0;
-        if(left.isDown)moveX--;
-        else if(right.isDown)moveX++;
         var moveY = 0;
-        if(up.isDown)moveY--;
-        else if(down.isDown)moveY++;
+        if(!useMouse){
+            if(up.isDown)moveY--;
+            else if(down.isDown)moveY++;
+            if(left.isDown)moveX--;
+            else if(right.isDown)moveX++;
+        }
+        else{
+            var posX = this.fetchParent().input.activePointer.position.x;
+            var posY = this.fetchParent().input.activePointer.position.y;
+            
+            var distX = Phaser.Math.Interpolation.Linear([0,1],Math.abs(this.player.x - posX)/10);
+            var distY = Phaser.Math.Interpolation.Linear([0,1],Math.abs(this.player.y - posY)/10);
+            
+            if(posX > this.player.x)moveX+=distX;
+            else if(posX < this.player.x)moveX-=distX;
+            if(posY > this.player.y)moveY+=distY;
+            else if(posY < this.player.y)moveY-=distY;
+        }
         
-        switch(moveX){
-            case -1:
-                this.player.anims.play('left', true);
-                break;
-            case 0:
-                this.player.anims.play('idle');
-                break;
-            case 1:
-                this.player.anims.play('right', true);
-                break;
-        }
-        switch(moveY){
-            case -1:
-                this.player.anims.play('up', true);
-                break;
-            case 0:
-                this.player.anims.play('idle');
-                break;
-            case 1:
-                this.player.anims.play('down', true);
-                break;
-        }
+        if(moveX < 0)this.player.anims.play('left', true);
+        else if(moveX > 0)this.player.anims.play('right', true);
+        else if(moveY < 0)this.player.anims.play('up', true);
+        else if(moveY > 0)this.player.anims.play('down', true);
+        else this.player.anims.play('idle');
         
         this.player.setVelocityX(moveX*250);
         this.player.setVelocityY(moveY*250);

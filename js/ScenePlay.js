@@ -2,10 +2,12 @@ var ScenePlay={
     preload:function(){        
         this.load.spritesheet('player', 'assets/unknown.png',{frameWidth: 67, frameHeight: 115});
         this.load.spritesheet('ball', 'assets/blank.png',{frameWidth: 50, frameHeight: 50});
-        this.load.image("enemyShots","assets/enemyShots.png");
-        this.load.image("blank","assets/blank.png");
+        this.load.spritesheet("enemyShots","assets/enemyShots.png",{frameWidth: 50, frameHeight: 50});
+        this.load.spritesheet("blank","assets/blank.png",{frameWidth: 50, frameHeight: 50});
+        this.load.spritesheet("weakpoint","assets/weakpoint.png",{frameWidth: 50, frameHeight: 50});
     },
     create:function(){
+        this.grid = new Grid(this).init();
         this.playerShots = [];
         game.canvas.oncontextmenu = function (e) { e.preventDefault(); }
         this.switching = false;
@@ -19,25 +21,36 @@ var ScenePlay={
         });
         txt.x -= txt.width/2;
         
-        var enemyShots=this.physics.add.staticGroup();
-        enemyShots.create(100,400,"enemyShots");
-        enemyShots.create(500,300,"enemyShots");
+        
+        //var enemyShots=this.physics.add.staticGroup();
+        //enemyShots.create(100,400,"enemyShots");
+        //enemyShots.create(500,300,"enemyShots");
         
         this.player = new Player(this).init(game.canvas.width/2,game.canvas.height - 100);
         this.ball = new Ball(this).init(0,0);
+        this.boss = new Hydra(this).init(this.grid);
+        
+        this.boss.attack();
         
         //this.physics.add.collider(this.player, enemyShots);
         
-        this.physics.add.overlap(this.player, enemyShots, ()=>{console.log("overlapped");}, null, this);
+        //this.physics.add.overlap(this.player, enemyShots, ()=>{console.log("overlapped");}, null, this);
+        this.hpText = this.add.text(0,0,BossHp,{});
+        this.playerHpText = this.add.text(game.canvas.width,0,PlayerHP,{}).setOrigin(1,0);
     },
     update:function(t,dt){
         if(this.switching)return;
         
         dt/=1000;
         
+        this.boss.update(dt);
         this.player.update(dt);
+        this.ball.update(dt);
         this.playerShots.forEach((shot)=>{
             shot.update(dt);
-        })
+        });
+        
+        this.hpText.setText(BossHp + "/" + MaxHP);
+        this.playerHpText.setText(PlayerHP + "/" + 3);
     }
 };
