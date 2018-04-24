@@ -25,6 +25,7 @@ var ScenePlay={
         
         this.player = new Player(this).init(game.canvas.width/2,game.canvas.height - 100);
         this.ball = new Ball(this).init(0,0);
+        this.grunt = new GruntBumper(this).init(200,200);
         
         //this.physics.add.collider(this.player, enemyShots);
         

@@ -9,7 +9,8 @@ const GruntBumper =function(parent){
         //If you have any custom values to ad to the objects update loop, do so here and then manually call the update from the ScenePlay scene.
         this.makeAnims();
         this.grunt=this.fetchParent().physics.add.sprite(x,y, "blank");
-        this.setVelocityY(25);
+        this.grunt.setVelocityY(2);
+        this.grunt.setCollideWorldBounds(true);
         
         this.grunt.isDead = false;
         this.grunt.update = ()=>{
@@ -18,7 +19,8 @@ const GruntBumper =function(parent){
             }
         }
         this.fetchParent().physics.add.overlap(this.fetchParent().ball, this.grunt, ()=>{
-            this.fetchParent().ball.overlapPlayerShot(this.shot.body.velocity.x)
+            this.fetchParent().ball.overlapPlayerShot(this.grunt.body.velocity.x);
+            console.log("Bumper is Dead:");
             this.grunt.destroy();
         }, null, this);
     }
@@ -29,6 +31,8 @@ const GruntBumper =function(parent){
     }
     this.makeAnims = ()=>{
         
-    }
-}
+    };
+    this.update = (dt)=>{
+        
+    };
 }
