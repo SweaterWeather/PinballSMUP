@@ -20,6 +20,9 @@ var up = game.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
 var down = game.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
 var left = game.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
 var right = game.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+var space = game.input.keyboard.addKey(32);
+
+//window.setFocus(); 
 
 var useMouse = true;
 game.scene.start("Title");

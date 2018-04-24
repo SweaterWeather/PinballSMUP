@@ -24,8 +24,9 @@ const Ball =function(parent){
                 this.ball.x=this.fetchParent().player.x;
                 this.ball.y=this.fetchParent().player.y - 50;
                 
-                var keys = this.fetchParent().input.keyboard.createCursorKeys();
-                if(keys.space.isDown){
+                //this.fetchParent().input.keyboard.addKeyCapture(32);
+                //var keys = this.fetchParent().input.keyboard.createCursorKeys();
+                if(this.fetchParent().input.activePointer.buttons == 4 && this.fetchParent().input.activePointer.isDown){
                     this.ball.activeInGame = true;
                     this.ball.setVelocityY(-500);
                 }

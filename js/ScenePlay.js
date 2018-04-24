@@ -19,7 +19,7 @@ var ScenePlay={
         game.canvas.oncontextmenu = function (e) { e.preventDefault(); }
         this.switching = false;
         
-        var txt = this.add.text(game.canvas.width/2,game.canvas.height/2,"-SPACE TO SERVE BALL-",{});
+        var txt = this.add.text(game.canvas.width/2,game.canvas.height/2,"-CENTER MOUSE-CLICK TO SERVE BALL-",{});
         txt.setInteractive();
         txt.on("pointerdown",()=>{
             //this.switching = true;
