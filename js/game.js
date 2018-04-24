@@ -13,6 +13,7 @@ var config={
 var game=new Phaser.Game(config);
 game.scene.add("Title", SceneTitle);
 game.scene.add("Play", ScenePlay);
+game.scene.add("Credits", SceneCredits);
 game.scene.add("GameOver", SceneGameOver);
 
 var up = game.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -21,5 +22,4 @@ var left = game.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
 var right = game.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
 var useMouse = true;
-
-game.scene.start("Play");
+game.scene.start("Title");
