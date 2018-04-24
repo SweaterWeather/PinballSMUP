@@ -9,8 +9,14 @@ const GruntBumper =function(parent){
         //If you have any custom values to ad to the objects update loop, do so here and then manually call the update from the ScenePlay scene.
         this.makeAnims();
         this.grunt=this.fetchParent().physics.add.sprite(x,y, "blank");
+        this.vx = 1;
+        this.grunt.setVelocityX(this.vx);
         this.grunt.setVelocityY(2);
         this.grunt.setCollideWorldBounds(true);
+        this.grunt.body.allowGravity = false;
+        this.grunt.body.allowDrag = false;
+        
+        this.fetchParent().grunts.push(this.grunt);
         
         this.grunt.isDead = false;
         this.grunt.update = ()=>{
