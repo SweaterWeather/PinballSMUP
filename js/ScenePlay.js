@@ -15,6 +15,7 @@ var ScenePlay={
     create:function(){
         this.grid = new Grid(this).init();
         this.playerShots = [];
+        this.grunts = [];
         game.canvas.oncontextmenu = function (e) { e.preventDefault(); }
         this.switching = false;
         
@@ -75,6 +76,9 @@ var ScenePlay={
         this.ball.update(dt);
         this.playerShots.forEach((shot)=>{
             shot.update(dt);
+        });
+        this.grunts.forEach((grunt)=>{
+            grunt.update(dt);
         });
         
         if(PlayerHP < 0){
