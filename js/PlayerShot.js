@@ -6,12 +6,13 @@ const PlayerShot =function(parent){
         
         this.makeAnims();
         
-        this.shot=this.fetchParent().physics.add.sprite(x,y,"enemyShots");
+        this.shot=this.fetchParent().physics.add.sprite(x,y,"playerShots");
         this.shot.body.allowGravity = false;
         this.shot.allowDrag = false;
         
         this.fetchParent().playerShots.push(this.shot);
-        this.shot.lifeSpan = .5;
+        this.shot.lifeSpan = .25;
+        //this.shot.setScale(.5,.5);
         
         this.shot.setVelocityY(-500);
         this.shot.right = right;
@@ -26,7 +27,7 @@ const PlayerShot =function(parent){
             if(this.shot.lifeSpan < 0)this.shot.destroy();
         }
         
-        console.log("made one");
+        //console.log("made one");
         
         return this.shot;
     }
