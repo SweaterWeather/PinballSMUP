@@ -6,7 +6,7 @@ const WPTarget =function(parent){
         var spacing = game.canvas.width/7;
         var g=this.fetchParent().add.sprite(x * spacing + spacing/2,y * spacing + spacing/2,"blank");
         
-        g.setAlpha(0.1);
+        g.setAlpha(0);
         
         g.update= (x, y)=>{
             g.x = x * spacing + spacing/2;

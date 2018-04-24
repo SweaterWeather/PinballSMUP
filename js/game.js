@@ -13,6 +13,7 @@ var config={
 var game=new Phaser.Game(config);
 game.scene.add("Title", SceneTitle);
 game.scene.add("Play", ScenePlay);
+game.scene.add("GameOver", SceneGameOver);
 
 var up = game.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
 var down = game.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
