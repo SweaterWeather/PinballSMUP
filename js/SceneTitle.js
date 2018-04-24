@@ -7,23 +7,25 @@ var SceneTitle = {
         
     },
     create:function(){
+        //game.canvas.width/2,game.canvas.height
         //make some images to make this look better
-        var play = this.add.image(300,200,"TITLE",); 
-        var play = this.add.image(300,350,"PLAY",);       
+        var play = this.add.image(game.canvas.width/2,200,"TITLE",); 
+        play.setScale(.5,.5);
+        var play = this.add.image(game.canvas.width/2,350,"PLAY",);       
         play.setInteractive()       
         play.on("pointerdown",()=>{
         game.scene.stop("Title");
         game.scene.start("Play");
         });
         
-        var credits = this.add.image(300,400,"CREDITS",); 
+        var credits = this.add.image(game.canvas.width/2,400,"CREDITS",); 
         credits.setInteractive();
         credits.on("pointerdown",()=>{
         game.scene.stop("Title");
         game.scene.start("Credits");
         });
         
-       var exit = this.add.image(300,450,"EXIT",); 
+       var exit = this.add.image(game.canvas.width/2,450,"EXIT",); 
         exit.setInteractive();
         exit.on("pointerdown",()=>{
         game.scene.stop("Title");
